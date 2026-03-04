@@ -11,6 +11,11 @@ struct Node {
 };
 
 void output(Node *);
+void deleteNode(Node *&, int);
+void insertNode(Node *&, int, float);
+void insertNodeFront(Node *&, float);
+void insertNodeEnd(Node *&, float);
+void deleteList(Node *&);
 
 int main() {
     Node *head = nullptr;
