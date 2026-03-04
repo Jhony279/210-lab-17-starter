@@ -106,7 +106,7 @@ int main() {
     return 0;
 }
 
-void deleteNode(Node *&hd, int pos){
+void deleteNode(Node *&hd){
     // deleting a node
     Node * current = hd;
     cout << "Which node to delete? " << endl;
@@ -131,6 +131,48 @@ void deleteNode(Node *&hd, int pos){
         delete current;
         current = nullptr;
     }
+    output(hd);
+}
+
+void insertNode(Node *&hd){
+    // insert a node
+    Node *current = hd;
+    cout << "After which node to insert 10000? " << endl;
+    int count = 1;
+    int entry;
+    while (current) {
+        cout << "[" << count++ << "] " << current->value << endl;
+        current = current->next;
+    }
+    cout << "Choice --> ";
+    cin >> entry;
+
+    current = hd;
+    Node *prev = hd;
+    for (int i = 0; i < (entry); i++)
+        if (i == 0)
+            current = current->next;
+        else {
+            current = current->next;
+            prev = prev->next;
+        }
+    //at this point, insert a node between prev and current
+    Node * newnode = new Node;
+    newnode->value = 10000;
+    newnode->next = current;
+    prev->next = newnode;
+    output(hd);
+}
+
+void deleteList(Node *&hd){
+    // deleting the linked list
+    Node * current = hd;
+    while (current) {
+        hd = current->next;
+        delete current;
+        current = hd;
+    }
+    hd = nullptr;
     output(hd);
 }
 
