@@ -106,6 +106,34 @@ int main() {
     return 0;
 }
 
+void deleteNode(Node *&hd, int pos){
+    // deleting a node
+    Node * current = hd;
+    cout << "Which node to delete? " << endl;
+    output(hd);
+    int entry;
+    cout << "Choice --> ";
+    cin >> entry;
+
+    // traverse that many times and delete that node
+    current = hd;
+    Node *prev = hd;
+    for (int i = 0; i < (entry-1); i++)
+        if (i == 0)
+            current = current->next;
+        else {
+            current = current->next;
+            prev = prev->next;
+        }
+    // at this point, delete current and reroute pointers
+    if (current) {  // checks for current to be valid before deleting the node
+        prev->next = current->next;
+        delete current;
+        current = nullptr;
+    }
+    output(hd);
+}
+
 void output(Node * hd) {
     if (!hd) {
         cout << "Empty list.\n";
