@@ -16,8 +16,22 @@ void insertNode(Node *&);
 void insertNodeFront(Node *&);
 void insertNodeEnd(Node *&);
 void deleteList(Node *&);
+Node * createList(int);
 
 int main() {
+    Node *head = createList(SIZE);
+
+    output(head);
+    deleteNode(head);
+    insertNode(head);
+    deleteList(head);
+    insertNodeFront(head);
+    insertNodeEnd(head);
+
+    return 0;
+}
+
+Node * createList(int size) {
     Node *head = nullptr;
     int count = 0;
 
@@ -38,13 +52,7 @@ int main() {
             head = newVal;
         }
     }
-    output(head);
-
-    deleteNode(head);
-    insertNode(head);
-    deleteList(head);
-
-    return 0;
+    return head;
 }
 
 void deleteNode(Node *&hd){
@@ -120,19 +128,60 @@ void deleteList(Node *&hd){
 void insertNodeFront(Node *&hd){
     // insert a node at the front of the list
     Node * newnode = new Node;
-    newnode->value = 10000;
+    cout << "What value to insert at the front? " << endl;
+    int count = 1;
+    int entry;
+    while (newnode) {
+        cout << "[" << count++ << "] " << newnode->value << endl;
+        newnode = newnode->next;
+    }
+    cout << "Choice --> ";
+    cin >> entry;
+
+    // insert the new node at the front of the list
+    newnode->value = entry;
     newnode->next = hd;
     hd = newnode;
     output(hd);
 }
 
+void insertNodeEnd(Node *&hd){
+    // insert a node at the end of the list
+    Node * newnode = new Node;
+    cout << "What value to insert at the end? " << endl;
+    int count = 1;
+    int entry;
+    while (newnode) {
+        cout << "[" << count++ << "] " << newnode->value << endl;
+        newnode = newnode->next;
+    }
+    cout << "Choice --> ";
+    cin >> entry;
+
+    newnode->value = entry;
+    newnode->next = nullptr;
+
+    if (!hd) { // if the list is empty, make the new node the head
+        hd = newnode;
+    } else { // otherwise, find the end of the list and append the new node
+        Node * current = hd;
+        while (current->next) {
+            current = current->next;
+        }
+        current->next = newnode;
+    }
+    output(hd);
+}
+
 void output(Node * hd) {
+    // output the linked list
     if (!hd) {
         cout << "Empty list.\n";
         return;
     }
     int count = 1;
     Node * current = hd;
+    // traverse the list and output each node's value
     while (current) {
         cout << "[" << count++ << "] " << current->value << endl;
         current = current->next;
