@@ -1,4 +1,4 @@
-// COMSC-210 | Lab 16 | Johnathan Perez Baltazar
+// COMSC-210 | Lab 17 | Johnathan Perez Baltazar
 
 #include <iostream>
 using namespace std;
@@ -114,6 +114,15 @@ void deleteList(Node *&hd){
         current = hd;
     }
     hd = nullptr;
+    output(hd);
+}
+
+void insertNodeFront(Node *&hd){
+    // insert a node at the front of the list
+    Node * newnode = new Node;
+    newnode->value = 10000;
+    newnode->next = hd;
+    hd = newnode;
     output(hd);
 }
 
